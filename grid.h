@@ -1,4 +1,5 @@
 #pragma once
+#include <vector>
 class Grid
 {
 public:
@@ -6,6 +7,9 @@ public:
     int grid[20][10];
     void initialise();
     void print();
+    void Draw();
 private:
-    int rows, columns;
+    int rows, columns, cellsize;
+    std::vector<Color> getColour();
+    std::vector<Color> colors;
 };

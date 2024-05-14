@@ -1,12 +1,15 @@
 #include <raylib.h>
-#define IS_WINDOW_OPEN !WindowShouldClose()
+#include "grid.cpp"
+#define WINDOW_IS_OPEN !WindowShouldClose()
 int main()
 {
-    InitWindow(300,600,"Tetris");
-    while(IS_WINDOW_OPEN)
+    InitWindow(300, 600, "Tetris");
+    Grid grid = Grid();
+    while (WINDOW_IS_OPEN)
     {
         BeginDrawing();
-        // ClearBackground();
+        ClearBackground({255,255,255,255});
+        grid.Draw();
         EndDrawing();
     }
     CloseWindow();
