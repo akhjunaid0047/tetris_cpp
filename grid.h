@@ -1,7 +1,7 @@
 #pragma once
 #include <vector>
 #include <raylib.h>
-#include"colors.h"
+#include "colors.h"
 class Grid
 {
 public:
@@ -10,7 +10,7 @@ public:
     void initialise();
     void print();
     void Draw();
-
+    int isCellOutside(int row, int column);
 private:
     int rows, columns, cellsize;
     std::vector<Color> colors;

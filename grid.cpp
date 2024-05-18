@@ -47,3 +47,10 @@ void Grid::Draw()
         std::cout << "\n";
     }
 }
+
+int Grid::isCellOutside(int row, int column)
+{
+    if ((rows > row and row >= 0) and (columns > column and column >= 0))
+        return 0;
+    return 1;
+}

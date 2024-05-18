@@ -4,6 +4,7 @@
 #include <random>
 class Game
 {
+    double lastMoveTime = 0;
     std::vector<Block> blocks;
     Block currentBlock;
 
@@ -37,5 +38,47 @@ public:
     {
         grid.Draw();
         currentBlock.draw();
+    }
+    int isBlockOut()
+    {
+        std::vector<Position> currentPosition = currentBlock.getCurrentPosition();
+        for (Position it : currentPosition)
+        {
+            if (grid.isCellOutside(it.row, it.column))
+                return 1;
+        }
+        return 0;
+    }
+    void input()
+    {
+        double currentTime = GetTime();
+        if (currentTime - lastMoveTime >= 0.1)
+        {
+            if (IsKeyDown(KEY_LEFT))
+            {
+                currentBlock.move(0, -1);
+                if (isBlockOut())
+                    currentBlock.move(0, 1);
+            }
+            if (IsKeyDown(KEY_RIGHT))
+            {
+                currentBlock.move(0, 1);
+                if (isBlockOut())
+                    currentBlock.move(0, -1);
+            }
+            if (IsKeyDown(KEY_UP))
+            {
+                currentBlock.move(-1, 0);
+                if (isBlockOut())
+                    currentBlock.move(1, 0);
+            }
+            if (IsKeyDown(KEY_DOWN))
+            {
+                currentBlock.move(1, 0);
+                if (isBlockOut())
+                    currentBlock.move(-1, 0);
+            }
+            lastMoveTime = currentTime;
+        }
     }
 };

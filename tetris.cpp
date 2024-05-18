@@ -8,6 +8,7 @@ int main()
     InitWindow(300, 600, "Tetris");
     while (WINDOW_IS_OPEN)
     {
+        game.input();
         BeginDrawing();
         ClearBackground({255, 255, 255, 255});
         game.draw();
