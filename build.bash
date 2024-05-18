@@ -1,0 +1,1 @@
+g++ tetris.cpp -o tetris -lraylib -lGL -lm -lpthread -ldl -lrt -lX11

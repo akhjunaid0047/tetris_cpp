@@ -1,5 +1,7 @@
 #include "grid.h"
+#include "colors.h"
 #include <iostream>
+#include <raylib.h>
 Grid::Grid()
 {
     rows = 20;
@@ -31,19 +33,6 @@ void Grid::print()
         }
         std::cout << "\n";
     }
-}
-
-std::vector<Color> Grid::getColour()
-{
-    Color darkgray = {26, 31, 40, 255};
-    Color f94144 = {249, 65, 68, 255};
-    Color f3722c = {243, 114, 44, 255};
-    Color f8961e = {248, 150, 30, 255};
-    Color f9c74f = {249, 199, 79, 255};
-    Color n0be6d = {144, 190, 109, 255};
-    Color f3aa8b = {67, 170, 139, 255};
-    Color fi77590 = {87, 117, 144, 255};
-    return {darkgray, f94144, f3722c, f8961e, f9c74f, n0be6d, f3aa8b, fi77590};
 }
 
 void Grid::Draw()
