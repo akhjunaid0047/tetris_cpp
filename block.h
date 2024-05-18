@@ -15,15 +15,34 @@ public:
         cellsize = 30;
         colors = getColour();
         state = 0;
+        rowOffset = 0;
+        columnOffset = 0;
     };
-    int colorId;
+    int colorId, rowOffset, columnOffset;
     std::map<int, std::vector<Position>> rotationState;
     void draw()
     {
-        for (auto it : rotationState[state])
+        std::vector<Position> currentPostion = getCurrentPosition();
+        for (auto it : currentPostion)
         {
             DrawRectangle(it.column * cellsize, it.row * cellsize, cellsize - 1, cellsize - 1, colors[colorId]);
         }
+    }
+    void Move(int row, int column)
+    {
+        rowOffset += row;
+        columnOffset += column;
+    }
+    std::vector<Position> getCurrentPosition()
+    {
+        std::vector<Position> newPosition;
+        for (Position it : rotationState[state])
+        {
+            it.row += rowOffset;
+            it.column += columnOffset;
+            newPosition.push_back(it);
+        }
+        return newPosition;
     }
 };
 
@@ -37,6 +56,7 @@ public:
         rotationState[1] = {Position(0, 1), Position(1, 1), Position(2, 1), Position(2, 2)};
         rotationState[2] = {Position(1, 0), Position(1, 1), Position(1, 2), Position(2, 0)};
         rotationState[3] = {Position(0, 0), Position(0, 1), Position(1, 1), Position(2, 1)};
+        Move(0, 3);
     }
 };
 
@@ -50,6 +70,7 @@ public:
         rotationState[1] = {Position(0, 1), Position(0, 2), Position(1, 1), Position(2, 1)};
         rotationState[2] = {Position(1, 0), Position(1, 1), Position(1, 2), Position(2, 2)};
         rotationState[3] = {Position(0, 1), Position(1, 1), Position(2, 0), Position(2, 1)};
+        Move(0, 3);
     }
 };
 
@@ -63,6 +84,7 @@ public:
         rotationState[1] = {Position(0, 2), Position(1, 2), Position(2, 2), Position(3, 2)};
         rotationState[2] = {Position(2, 0), Position(2, 1), Position(2, 2), Position(2, 3)};
         rotationState[3] = {Position(0, 1), Position(1, 1), Position(2, 1), Position(3, 1)};
+        Move(-1, 3);
     }
 };
 
@@ -73,6 +95,7 @@ public:
     {
         colorId = 4;
         rotationState[0] = {Position(0, 0), Position(0, 1), Position(1, 0), Position(1, 1)};
+        Move(0, 3);
     }
 };
 
@@ -86,6 +109,7 @@ public:
         rotationState[1] = {Position(0, 1), Position(1, 1), Position(1, 2), Position(2, 2)};
         rotationState[2] = {Position(1, 1), Position(1, 2), Position(2, 0), Position(2, 1)};
         rotationState[3] = {Position(0, 0), Position(1, 0), Position(1, 1), Position(2, 1)};
+        Move(0, 3);
     }
 };
 
@@ -99,6 +123,7 @@ public:
         rotationState[1] = {Position(0, 1), Position(1, 1), Position(1, 2), Position(2, 1)};
         rotationState[2] = {Position(1, 0), Position(1, 1), Position(1, 2), Position(2, 1)};
         rotationState[3] = {Position(0, 1), Position(1, 0), Position(1, 1), Position(2, 1)};
+        Move(0, 3);
     }
 };
 
@@ -112,5 +137,6 @@ public:
         rotationState[1] = {Position(0, 2), Position(1, 1), Position(1, 2), Position(2, 1)};
         rotationState[2] = {Position(1, 0), Position(1, 1), Position(2, 1), Position(2, 2)};
         rotationState[3] = {Position(0, 1), Position(1, 0), Position(1, 1), Position(2, 0)};
+        Move(0, 3);
     }
 };
