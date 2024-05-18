@@ -137,6 +137,6 @@ public:
         rotationState[1] = {Position(0, 2), Position(1, 1), Position(1, 2), Position(2, 1)};
         rotationState[2] = {Position(1, 0), Position(1, 1), Position(2, 1), Position(2, 2)};
         rotationState[3] = {Position(0, 1), Position(1, 0), Position(1, 1), Position(2, 0)};
-        Move(0, 3);
+        Move(0, 4);
     }
 };
