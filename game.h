@@ -30,7 +30,7 @@ public:
     }
     Block getBlock()
     {
-        int randomNumber = getRandomNumber(0, 7);
+        int randomNumber = getRandomNumber(0, 6);
         return blocks[randomNumber];
     }
     void draw()
