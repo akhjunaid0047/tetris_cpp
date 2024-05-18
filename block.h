@@ -28,7 +28,7 @@ public:
             DrawRectangle(it.column * cellsize, it.row * cellsize, cellsize - 1, cellsize - 1, colors[colorId]);
         }
     }
-    void Move(int row, int column)
+    void move(int row, int column)
     {
         rowOffset += row;
         columnOffset += column;
@@ -56,7 +56,7 @@ public:
         rotationState[1] = {Position(0, 1), Position(1, 1), Position(2, 1), Position(2, 2)};
         rotationState[2] = {Position(1, 0), Position(1, 1), Position(1, 2), Position(2, 0)};
         rotationState[3] = {Position(0, 0), Position(0, 1), Position(1, 1), Position(2, 1)};
-        Move(0, 3);
+        move(0, 3);
     }
 };
 
@@ -70,7 +70,7 @@ public:
         rotationState[1] = {Position(0, 1), Position(0, 2), Position(1, 1), Position(2, 1)};
         rotationState[2] = {Position(1, 0), Position(1, 1), Position(1, 2), Position(2, 2)};
         rotationState[3] = {Position(0, 1), Position(1, 1), Position(2, 0), Position(2, 1)};
-        Move(0, 3);
+        move(0, 3);
     }
 };
 
@@ -84,7 +84,7 @@ public:
         rotationState[1] = {Position(0, 2), Position(1, 2), Position(2, 2), Position(3, 2)};
         rotationState[2] = {Position(2, 0), Position(2, 1), Position(2, 2), Position(2, 3)};
         rotationState[3] = {Position(0, 1), Position(1, 1), Position(2, 1), Position(3, 1)};
-        Move(-1, 3);
+        move(-1, 3);
     }
 };
 
@@ -95,7 +95,7 @@ public:
     {
         colorId = 4;
         rotationState[0] = {Position(0, 0), Position(0, 1), Position(1, 0), Position(1, 1)};
-        Move(0, 4);
+        move(0, 4);
     }
 };
 
@@ -109,7 +109,7 @@ public:
         rotationState[1] = {Position(0, 1), Position(1, 1), Position(1, 2), Position(2, 2)};
         rotationState[2] = {Position(1, 1), Position(1, 2), Position(2, 0), Position(2, 1)};
         rotationState[3] = {Position(0, 0), Position(1, 0), Position(1, 1), Position(2, 1)};
-        Move(0, 3);
+        move(0, 3);
     }
 };
 
@@ -123,7 +123,7 @@ public:
         rotationState[1] = {Position(0, 1), Position(1, 1), Position(1, 2), Position(2, 1)};
         rotationState[2] = {Position(1, 0), Position(1, 1), Position(1, 2), Position(2, 1)};
         rotationState[3] = {Position(0, 1), Position(1, 0), Position(1, 1), Position(2, 1)};
-        Move(0, 3);
+        move(0, 3);
     }
 };
 
@@ -137,6 +137,6 @@ public:
         rotationState[1] = {Position(0, 2), Position(1, 1), Position(1, 2), Position(2, 1)};
         rotationState[2] = {Position(1, 0), Position(1, 1), Position(2, 1), Position(2, 2)};
         rotationState[3] = {Position(0, 1), Position(1, 0), Position(1, 1), Position(2, 0)};
-        Move(0, 4);
+        move(0, 4);
     }
 };
