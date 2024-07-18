@@ -44,7 +44,6 @@ void Grid::Draw()
             int cellValue = grid[i][j];
             DrawRectangle(j * cellsize, i * cellsize, cellsize - 1, cellsize - 1, colors[cellValue]);
         }
-        std::cout << "\n";
     }
 }
 
