@@ -21,7 +21,7 @@ int main()
     InitWindow(300, 600, "Tetris");
     while (WINDOW_IS_OPEN)
     {
-        if (eventTriggered(0.2))
+        if (eventTriggered(0.8))
             game.moveDown();
         game.input();
         BeginDrawing();
