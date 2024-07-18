@@ -44,6 +44,13 @@ public:
         }
         return newPosition;
     }
+    void rotate()
+    {
+        state++;
+        if(state==(int) rotationState.size()-1)
+            state = 0;
+
+    }
 };
 
 class LBlock : public Block
@@ -95,6 +102,9 @@ public:
     {
         colorId = 4;
         rotationState[0] = {Position(0, 0), Position(0, 1), Position(1, 0), Position(1, 1)};
+        rotationState[1] = {Position(0, 0), Position(0, 1), Position(1, 0), Position(1, 1)};
+        rotationState[2] = {Position(0, 0), Position(0, 1), Position(1, 0), Position(1, 1)};
+        rotationState[3] = {Position(0, 0), Position(0, 1), Position(1, 0), Position(1, 1)};
         move(0, 4);
     }
 };
@@ -107,8 +117,10 @@ public:
         colorId = 5;
         rotationState[0] = {Position(0, 1), Position(0, 2), Position(1, 0), Position(1, 1)};
         rotationState[1] = {Position(0, 1), Position(1, 1), Position(1, 2), Position(2, 2)};
-        rotationState[2] = {Position(1, 1), Position(1, 2), Position(2, 0), Position(2, 1)};
-        rotationState[3] = {Position(0, 0), Position(1, 0), Position(1, 1), Position(2, 1)};
+        rotationState[2] = {Position(0, 1), Position(0, 2), Position(1, 0), Position(1, 1)};
+        rotationState[3] = {Position(0, 1), Position(1, 1), Position(1, 2), Position(2, 2)};
+        // rotationState[2] = {Position(1, 1), Position(1, 2), Position(2, 0), Position(2, 1)};
+        // rotationState[3] = {Position(0, 0), Position(1, 0), Position(1, 1), Position(2, 1)};
         move(0, 3);
     }
 };
@@ -135,8 +147,10 @@ public:
         colorId = 7;
         rotationState[0] = {Position(0, 0), Position(0, 1), Position(1, 1), Position(1, 2)};
         rotationState[1] = {Position(0, 2), Position(1, 1), Position(1, 2), Position(2, 1)};
-        rotationState[2] = {Position(1, 0), Position(1, 1), Position(2, 1), Position(2, 2)};
-        rotationState[3] = {Position(0, 1), Position(1, 0), Position(1, 1), Position(2, 0)};
+        rotationState[2] = {Position(0, 0), Position(0, 1), Position(1, 1), Position(1, 2)};
+        rotationState[3] = {Position(0, 2), Position(1, 1), Position(1, 2), Position(2, 1)};
+        // rotationState[2] = {Position(1, 0), Position(1, 1), Position(2, 1), Position(2, 2)};
+        // rotationState[3] = {Position(0, 1), Position(1, 0), Position(1, 1), Position(2, 0)};
         move(0, 4);
     }
 };

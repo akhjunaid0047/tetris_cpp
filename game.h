@@ -49,10 +49,16 @@ public:
         }
         return 0;
     }
+    void moveDown()
+    {
+        currentBlock.move(1, 0);
+                if (isBlockOut())
+                    currentBlock.move(-1, 0);
+    }
     void input()
     {
         double currentTime = GetTime();
-        if (currentTime - lastMoveTime >= 0.1)
+        if (currentTime - lastMoveTime >= 0.12)
         {
             if (IsKeyDown(KEY_LEFT))
             {
@@ -68,15 +74,13 @@ public:
             }
             if (IsKeyDown(KEY_UP))
             {
-                currentBlock.move(-1, 0);
+                currentBlock.rotate();
                 if (isBlockOut())
-                    currentBlock.move(1, 0);
+                    currentBlock.move(0, -1);
             }
             if (IsKeyDown(KEY_DOWN))
             {
-                currentBlock.move(1, 0);
-                if (isBlockOut())
-                    currentBlock.move(-1, 0);
+                moveDown();
             }
             lastMoveTime = currentTime;
         }
