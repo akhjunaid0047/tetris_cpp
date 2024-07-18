@@ -4,13 +4,15 @@
 #include <random>
 class Game
 {
+    int gameOver;
     double lastMoveTime = 0;
     std::vector<Block> blocks;
-    Block currentBlock;
+    Block currentBlock, nextBlock;
 
 public:
     Game()
     {
+        gameOver = 0;
         grid = Grid();
         blocks = {LBlock(),
                   JBlock(),
@@ -20,8 +22,15 @@ public:
                   TBlock(),
                   ZBlock()};
         currentBlock = getBlock();
+        nextBlock = getBlock();
     }
     Grid grid;
+    void Reset()
+    {
+        grid.initialise();
+        currentBlock = getBlock();
+        nextBlock = getBlock();
+    }
     int getRandomNumber(int min, int max)
     {
         std::random_device rd;
@@ -49,38 +58,79 @@ public:
         }
         return 0;
     }
+    void lockBlock()
+    {
+        for (Position it : currentBlock.getCurrentPosition())
+            grid.grid[it.row][it.column] = currentBlock.colorId;
+        currentBlock = nextBlock;
+        if (!blockOverlaps())
+        {
+            gameOver = 1;
+        }
+        nextBlock = getBlock();
+        grid.clearCompletedRows();
+    }
+    int blockOverlaps()
+    {
+        for (Position it : currentBlock.getCurrentPosition())
+        {
+            if (!grid.isCellEmpty(it.row, it.column))
+                return 0;
+        }
+        return 1;
+    }
     void moveDown()
     {
+        if (gameOver)
+            return;
         currentBlock.move(1, 0);
-                if (isBlockOut())
-                    currentBlock.move(-1, 0);
+        if (isBlockOut() or !blockOverlaps())
+        {
+            currentBlock.move(-1, 0);
+            lockBlock();
+        }
     }
     void input()
     {
+        if (gameOver and IsKeyPressed(KEY_R))
+        {
+            gameOver = 0;
+            Reset();
+        }
         double currentTime = GetTime();
-        if (currentTime - lastMoveTime >= 0.12)
+        if (currentTime - lastMoveTime >= 0.1122)
         {
             if (IsKeyDown(KEY_LEFT))
             {
-                currentBlock.move(0, -1);
-                if (isBlockOut())
-                    currentBlock.move(0, 1);
+                if (!gameOver)
+                {
+                    currentBlock.move(0, -1);
+                    if (isBlockOut() or !blockOverlaps())
+                        currentBlock.move(0, 1);
+                }
             }
             if (IsKeyDown(KEY_RIGHT))
             {
-                currentBlock.move(0, 1);
-                if (isBlockOut())
-                    currentBlock.move(0, -1);
+                if (!gameOver)
+                {
+                    currentBlock.move(0, 1);
+                    if (isBlockOut() or !blockOverlaps())
+                        currentBlock.move(0, -1);
+                }
             }
             if (IsKeyDown(KEY_UP))
             {
-                currentBlock.rotate();
-                if (isBlockOut())
-                    currentBlock.move(0, -1);
+                if (!gameOver)
+                {
+                    currentBlock.rotate();
+                    if (isBlockOut() or !blockOverlaps())
+                        currentBlock.rotateBack();
+                }
             }
             if (IsKeyDown(KEY_DOWN))
             {
-                moveDown();
+                if (!gameOver)
+                    moveDown();
             }
             lastMoveTime = currentTime;
         }

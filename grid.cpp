@@ -54,3 +54,51 @@ int Grid::isCellOutside(int row, int column)
         return 0;
     return 1;
 }
+
+int Grid::isCellEmpty(int row, int column)
+{
+    if (!grid[row][column])
+        return 1;
+    return 0;
+}
+
+void Grid::clearCompletedRows()
+{
+    int completed = 0;
+    for(int r = rows-1;r>=0;r--){
+        if(isRowFull(r))
+        {
+            clearRow(r);
+            completed++;
+        }
+        else if(completed>0)
+        {
+            moveRowDown(r,completed);
+        }
+    }
+}
+
+int Grid::isRowFull(int row)
+{
+    for (int i = 0; i < columns; i++)
+    {
+        if (grid[row][i] == 0)
+            return 0;
+    }
+    return 1;
+}
+
+void Grid::clearRow(int row)
+{
+    for (int i = 0; i < columns; i++)
+        grid[row][i] = 0;
+}
+
+void Grid::moveRowDown(int row, int number)
+{
+    for (int i = 0; i < columns; i++)
+    {
+        grid[row + number][i] = grid[row][i];
+        grid[row][i] = 0;
+    }
+}

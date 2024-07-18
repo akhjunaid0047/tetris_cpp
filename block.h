@@ -47,9 +47,14 @@ public:
     void rotate()
     {
         state++;
-        if(state==(int) rotationState.size()-1)
+        if (state > 3)
             state = 0;
-
+    }
+    void rotateBack()
+    {
+        state--;
+        if (state < 0)
+            state = 3;
     }
 };
 
@@ -119,8 +124,6 @@ public:
         rotationState[1] = {Position(0, 1), Position(1, 1), Position(1, 2), Position(2, 2)};
         rotationState[2] = {Position(0, 1), Position(0, 2), Position(1, 0), Position(1, 1)};
         rotationState[3] = {Position(0, 1), Position(1, 1), Position(1, 2), Position(2, 2)};
-        // rotationState[2] = {Position(1, 1), Position(1, 2), Position(2, 0), Position(2, 1)};
-        // rotationState[3] = {Position(0, 0), Position(1, 0), Position(1, 1), Position(2, 1)};
         move(0, 3);
     }
 };
@@ -149,8 +152,6 @@ public:
         rotationState[1] = {Position(0, 2), Position(1, 1), Position(1, 2), Position(2, 1)};
         rotationState[2] = {Position(0, 0), Position(0, 1), Position(1, 1), Position(1, 2)};
         rotationState[3] = {Position(0, 2), Position(1, 1), Position(1, 2), Position(2, 1)};
-        // rotationState[2] = {Position(1, 0), Position(1, 1), Position(2, 1), Position(2, 2)};
-        // rotationState[3] = {Position(0, 1), Position(1, 0), Position(1, 1), Position(2, 0)};
         move(0, 4);
     }
 };
